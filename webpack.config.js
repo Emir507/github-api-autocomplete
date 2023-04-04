@@ -56,7 +56,7 @@ module.exports = {
   plugins: [
     // для работы с HTML
     new HtmlWebpackPlugin({
-      title: "Webpack Output",
+      title: "Git Autocomplete",
       template: "./src/index.html",
       inject: true,
       minify: {

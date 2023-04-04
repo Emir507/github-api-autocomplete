@@ -9,7 +9,7 @@ class SearchInput {
   performDebouncedSearch = debounce(async (args) => {
     const results = await fetchResults(args);
     return results;
-  }, 400);
+  });
 
   getInput() {
     return this.input;

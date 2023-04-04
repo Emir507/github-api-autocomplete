@@ -54,12 +54,40 @@ ul {
     height: 101px;
     width: 500px;
     border: 1px solid black;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
     div {
       display: flex;
       flex-direction: column;
       span {
         font-size: 24px;
+      }
+    }
+    .close-btn {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 2px;
+        background-color: red;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
       }
     }
   }

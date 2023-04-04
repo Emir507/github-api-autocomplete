@@ -12,9 +12,9 @@ const suggestionsList = new SuggestionList(".search-input__suggestions");
 let results = [];
 
 searchInput.getInput().addEventListener("input", async (e) => {
-  suggestionsList.resetListElement();
   if (e.target.value) {
     results = await searchInput.performDebouncedSearch(e.target.value);
+    suggestionsList.resetListElement();
   }
   results.forEach((item) => {
     suggestionsList.createSuggestionElement(item.full_name, item.id);
@@ -28,17 +28,26 @@ suggestionsList.getList().addEventListener("click", (e) => {
       (repo) => repo.id == e.target.getAttribute("data-id")
     );
 
-    const { name, owner, stargazers_count } = foundRepo;
+    const { name, owner, stargazers_count, id } = foundRepo;
 
     suggestionsList.resetListElement();
 
     selectedItemsListElement.createSelectedElement(
       name,
       owner.login,
-      stargazers_count
+      stargazers_count,
+      id
     );
     selectedItemsListElement.render();
 
     searchInput.resetInput();
+  }
+});
+
+selectedItemsListElement.getList().addEventListener("click", (e) => {
+  if (e.target.classList.contains("close-btn")) {
+    const itemIdToRemove = e.target.parentNode.getAttribute("data-id");
+    selectedItemsListElement.removeElement(itemIdToRemove);
+    e.target.parentNode.remove();
   }
 });

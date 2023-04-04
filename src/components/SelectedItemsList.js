@@ -4,7 +4,7 @@ class SelectedItemsList {
     this.list = document.querySelector(selector);
   }
 
-  createSelectedElement(name, owner, stars) {
+  createSelectedElement(name, owner, stars, id) {
     const spanName = document.createElement("span");
     spanName.innerText = "Name: " + name;
 
@@ -21,7 +21,10 @@ class SelectedItemsList {
     textDiv.appendChild(spanStars);
 
     const div = document.createElement("div");
+    div.classList.add("close-btn");
+
     const li = document.createElement("li");
+    li.setAttribute("data-id", id);
 
     li.appendChild(textDiv);
     li.appendChild(div);
@@ -39,9 +42,16 @@ class SelectedItemsList {
   getList() {
     return this.list;
   }
+
   resetList() {
     this.listElements = [];
     this.list.innerHTML = "";
+  }
+
+  removeElement(id) {
+    this.listElements = this.listElements.filter(
+      (element) => element.getAttribute("data-id") !== id
+    );
   }
 }
 

@@ -12,10 +12,13 @@ const suggestionsList = new SuggestionList(".search-input__suggestions");
 let results = [];
 
 searchInput.getInput().addEventListener("input", async (e) => {
-  if (e.target.value) {
+  if (e.target.value.trim()) {
     results = await searchInput.performDebouncedSearch(e.target.value);
-    suggestionsList.resetListElement();
+  } else {
+    results = [];
   }
+
+  suggestionsList.resetListElement();
   results.forEach((item) => {
     suggestionsList.createSuggestionElement(item.full_name, item.id);
   });

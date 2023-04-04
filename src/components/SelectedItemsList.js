@@ -6,13 +6,13 @@ class SelectedItemsList {
 
   createSelectedElement(name, owner, stars, id) {
     const spanName = document.createElement("span");
-    spanName.innerText = "Name: " + name;
+    spanName.insertAdjacentText("afterbegin", "Name: " + name);
 
     const spanOwner = document.createElement("span");
-    spanOwner.innerText = "Owner: " + owner;
+    spanOwner.insertAdjacentText("afterbegin", "Owner: " + owner);
 
     const spanStars = document.createElement("span");
-    spanStars.innerText = "Stars: " + stars;
+    spanStars.insertAdjacentText("afterbegin", "Stars: " + stars);
 
     const textDiv = document.createElement("div");
 

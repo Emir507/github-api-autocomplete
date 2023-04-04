@@ -8,7 +8,7 @@ class SuggestionList {
   createSuggestionElement(full_name, id) {
     const li = document.createElement("li");
     li.setAttribute("data-id", id);
-    li.innerHTML = full_name;
+    li.insertAdjacentText("afterbegin", full_name);
     this.listItemElements.push(li);
     return li;
   }
@@ -20,6 +20,8 @@ class SuggestionList {
   resetListElement() {
     this.listItemElements = [];
     this.listElement.innerHTML = "";
+    console.log(this.listItemElements);
+    console.log(this.listElement);
   }
 
   render() {
